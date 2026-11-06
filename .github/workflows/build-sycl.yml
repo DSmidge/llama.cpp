@@ -193,6 +193,20 @@ jobs:
         id: cmake_build
         run:  examples/sycl/win-build-sycl.bat ${{ matrix.build }}
 
+      - name: Copy oneAPI runtime DLLs
+        run: |
+          R="$ONEAPI_ROOT"
+          cp "$R"/compiler/latest/bin/sycl*.dll "$R"/compiler/latest/bin/ur_*.dll ./build/bin/
+          cp "$R"/compiler/latest/bin/svml_dispmd.dll "$R"/compiler/latest/bin/libmmd.dll ./build/bin/
+          cp "$R"/mkl/latest/bin/mkl_sycl_blas*.dll "$R"/mkl/latest/bin/mkl_core*.dll "$R"/mkl/latest/bin/mkl_tbb_thread*.dll ./build/bin/
+          cp "$R"/tbb/latest/bin/tbb12.dll "$R"/dnnl/latest/bin/dnnl.dll ./build/bin/ || true
+
+      - name: Upload
+        uses: actions/upload-artifact@v4
+        with:
+          name: llama-sycl-${{ matrix.build }}-win-x64
+          path: build/bin/
+
       - name: ccache-clear
         uses: ./.github/actions/ccache-clear
         env:
