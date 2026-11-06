@@ -197,7 +197,7 @@ jobs:
         run: |
           R="$ONEAPI_ROOT"
           cp "$R"/compiler/latest/bin/sycl*.dll "$R"/compiler/latest/bin/ur_*.dll ./build/bin/
-          cp "$R"/compiler/latest/bin/svml_dispmd.dll "$R"/compiler/latest/bin/libmmd.dll ./build/bin/
+          cp "$R"/compiler/latest/bin/svml_dispmd.dll "$R"/compiler/latest/bin/libmmd.dll "$R"/compiler/latest/bin/libiomp5md.dll ./build/bin/
           cp "$R"/mkl/latest/bin/mkl_sycl_blas*.dll "$R"/mkl/latest/bin/mkl_core*.dll "$R"/mkl/latest/bin/mkl_tbb_thread*.dll ./build/bin/
           cp "$R"/tbb/latest/bin/tbb12.dll "$R"/dnnl/latest/bin/dnnl.dll ./build/bin/ || true
 
