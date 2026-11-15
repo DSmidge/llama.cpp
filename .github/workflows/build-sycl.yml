@@ -199,7 +199,9 @@ jobs:
           cp "$R"/compiler/latest/bin/sycl*.dll "$R"/compiler/latest/bin/ur_*.dll ./build/bin/
           cp "$R"/compiler/latest/bin/svml_dispmd.dll "$R"/compiler/latest/bin/libmmd.dll "$R"/compiler/latest/bin/libiomp5md.dll "$R"/compiler/latest/bin/libimalloc.dll ./build/bin/
           cp "$R"/mkl/latest/bin/mkl_sycl_blas*.dll "$R"/mkl/latest/bin/mkl_core*.dll "$R"/mkl/latest/bin/mkl_tbb_thread*.dll "$R"/mkl/latest/bin/mkl_intel*.dll ./build/bin/
+          cp "$(find "$R" -name libimalloc.dll | head -1)" ./build/bin/
           cp "$R"/tbb/latest/bin/tbb12.dll "$R"/dnnl/latest/bin/dnnl.dll ./build/bin/ || true
+          cp "$R"/umf/latest/bin/umf.dll "$R"/tcm/latest/bin/tcm.dll "$R"/tcm/latest/bin/libhwloc-15.dll ./build/bin/ || true
 
       - name: Upload
         uses: actions/upload-artifact@v4
